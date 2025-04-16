@@ -1,0 +1,25 @@
+name: Notify Discord on Push
+
+on:
+  push:
+    branches:
+      - main  # oder der Branch, den du überwachen möchtest
+  release:
+    types: [published]  # Benachrichtigung bei Veröffentlichung eines Releases
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Notify Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d "{\"content\": \"Es gibt ein neues Update im GitHub Repo: [${{ github.repository }}](https://github.com/${{ github.repository }})\\nCommit: ${{ github.sha }}\\nÄnderungen: ${{ github.event.head_commit.message }}\"}" \
+               $DISCORD_WEBHOOK_URL
