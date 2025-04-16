@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Test!
 set -e
 
 echo "🔐 LUKS Setup: Automatische Installation der benötigten Pakete"
