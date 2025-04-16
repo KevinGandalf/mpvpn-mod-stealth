@@ -9,8 +9,8 @@ show_help() {
     echo "  --addovpn    : Neue OpenVPN-Verbindung hinzufügen."
     echo "  --list       : Alle Verbindungen anzeigen."
     echo "***NUR WENN STEALTH MOD INSTALLIERT IST!***"
-    echo "  --stealthmod : Aktiviert den Stealth Modus"
-    echo "  --changemod  : Aktiviert den Change Modus"
+    echo "  --stealthmode : Aktiviert den Stealth Modus"
+    echo "  --changemode  : Aktiviert den Change Modus"
     echo "***"
     echo "  --help       : Zeigt diese Hilfe an."
     echo "  --version    : Gibt die Version des Skripts aus."
@@ -47,6 +47,12 @@ elif [[ "$1" == "--addwg" ]]; then
 elif [[ "$1" == "--addopenvpn" ]]; then
     # Befehl für OpenVPN-Verbindung hinzufügen
     /opt/mpvpn/helperscripts/assets/addopenvpnconnection.sh
+elif [[ "$1" == "--stealthmode" ]]; then
+    # Starte Stealthmod
+    /opt/mpvpn/helperscripts/mods/enable_stealth.sh
+elif [[ "$1" == "--changemode" ]]; then
+    # Starte Changemode
+    /opt/mpvpn/helperscripts/mods/enable_changemode.sh
 elif [[ "$1" == "--list" ]]; then
     # Befehl für das Anzeigen der aktiven Verbindungen
     list_active_connections
@@ -55,7 +61,7 @@ elif [[ "$1" == "--help" ]]; then
     show_help
 elif [[ "$1" == "--version" ]]; then
     # Versionsinfo anzeigen
-    echo "mpvpn Version 1.0"
+    echo "mpvpn Version 2.0"
 else
     # Ungültiger Parameter
     echo "❌ Ungültiger Parameter. Benutze '--help' für Hilfe."
